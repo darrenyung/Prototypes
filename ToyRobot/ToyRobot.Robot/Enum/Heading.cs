@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToyRobot.Space
+namespace ToyRobot.Movement.Enum
 {
-    public class Class1
+    public enum Heading
     {
+        Unknown,
+        North,
+        South,
+        East,
+        West
     }
 }

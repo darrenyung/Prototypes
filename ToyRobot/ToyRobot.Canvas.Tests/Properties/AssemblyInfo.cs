@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ToyRobot.Space.Tests")]
+[assembly: AssemblyTitle("ToyRobot.Canvas.Tests2")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ToyRobot.Space.Tests")]
+[assembly: AssemblyProduct("ToyRobot.Canvas.Tests2")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d1608c45-412c-4c8b-9d79-cb4122b1f7b3")]
+[assembly: Guid("1f97c5c9-d41d-4a67-8f92-071fc3bf3785")]
 
 // Version information for an assembly consists of the following four values:
 //
