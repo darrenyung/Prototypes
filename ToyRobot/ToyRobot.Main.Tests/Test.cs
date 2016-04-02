@@ -12,7 +12,7 @@ namespace ToyRobot.Canvas.Tests
        [TestMethod]
         public void CreateDefaultCanvas_True()
         {
-            Mock<IRobot> robotContainer = new Mock<IRobot>();
+            Mock<IBot> robotContainer = new Mock<IBot>();
 
             IMainManager canvasManager = new MainManager(robotContainer.Object);
             canvasManager.CreateDefaultCanvas();
@@ -27,7 +27,7 @@ namespace ToyRobot.Canvas.Tests
         [TestMethod]
         public void CreateCustomCanvas_True()
         {
-            Mock<IRobot> robotContainer = new Mock<IRobot>();
+            Mock<IBot> robotContainer = new Mock<IBot>();
 
             IMainManager canvasManager = new MainManager(robotContainer.Object);
             canvasManager.CreateCanvas(2,3);
@@ -42,7 +42,7 @@ namespace ToyRobot.Canvas.Tests
         [TestMethod]
         public void SetRobot_True()
         {
-            Mock<IRobot> robotContainer = new Mock<IRobot>();
+            Mock<IBot> robotContainer = new Mock<IBot>();
 
             IMainManager canvasManager = new MainManager(robotContainer.Object);
             canvasManager.CreateDefaultCanvas();
@@ -57,7 +57,7 @@ namespace ToyRobot.Canvas.Tests
         [ExpectedException(typeof(NullReferenceException))]
         public void SetRobot_False()
         {
-            Mock<IRobot> robotContainer = new Mock<IRobot>();
+            Mock<IBot> robotContainer = new Mock<IBot>();
 
             IMainManager canvasManager = new MainManager(robotContainer.Object);
             canvasManager.Set(0, 0, "NORTH");
@@ -67,7 +67,7 @@ namespace ToyRobot.Canvas.Tests
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void SetRobot_OutOfBounds()
         {
-            Mock<IRobot> robotContainer = new Mock<IRobot>();
+            Mock<IBot> robotContainer = new Mock<IBot>();
 
             IMainManager canvasManager = new MainManager(robotContainer.Object);
             canvasManager.CreateDefaultCanvas();
@@ -78,7 +78,7 @@ namespace ToyRobot.Canvas.Tests
         [TestMethod]
         public void ChangePosition_True()
         {
-            Mock<IRobot> robotContainer = new Mock<IRobot>();
+            Mock<IBot> robotContainer = new Mock<IBot>();
 
             IMainManager canvasManager = new MainManager(robotContainer.Object);
             canvasManager.CreateDefaultCanvas();

@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToyRobot.File
+namespace ToyRobot.Input
 {
-    public class FileHandler
+    public interface IInputHandler
     {
+        string ProcessArgs(string[] args);
+
+        void PrintHelp();
     }
 }

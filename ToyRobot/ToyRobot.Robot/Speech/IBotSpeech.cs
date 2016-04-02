@@ -1,6 +1,6 @@
 ﻿namespace ToyRobot.Robot.Speech
 {
-    public interface IRobotSpeech
+    public interface IBotSpeech
     {
         string ReportPosition(int x, int y, string facing);
         string ReportDanger();

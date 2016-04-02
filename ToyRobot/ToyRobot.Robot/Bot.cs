@@ -5,19 +5,19 @@ using ToyRobot.Robot.Speech;
 
 namespace ToyRobot.Robot
 {
-    public class Robot : IRobot
+    public class Bot : IBot
     {
         #region Private Variables
 
-        private IMovement movementManager;
-        private IRobotSpeech speechManager;
+        private IBotMovement movementManager;
+        private IBotSpeech speechManager;
 
         public int CurrXPosition { get; private set; }
         public int CurrYPosition { get; private set; }
 
         #endregion
 
-        public Robot(IMovement movementManager, IRobotSpeech speechManager)
+        public Bot(IBotMovement movementManager, IBotSpeech speechManager)
         {
             this.movementManager = movementManager;
             this.speechManager = speechManager;

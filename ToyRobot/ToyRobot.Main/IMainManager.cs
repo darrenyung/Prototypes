@@ -23,7 +23,7 @@ namespace ToyRobot.Main
         /// <param name="yPos"></param>
         string Set(int xPos, int yPos, string facing);
 
-        IRobot[,] Canvas { get; }
+        IBot[,] Canvas { get; }
 
         string Move();
 

@@ -8,28 +8,15 @@ namespace ToyRobot.Main
     {
         #region Private Variables
 
-        private IRobot robotManager;
+        private IBot robotManager;
 
         #endregion
 
-        public MainManager(IRobot robotManager)
+        public MainManager(IBot robotManager)
         {
             this.robotManager = robotManager;
         }
-
-
-        public IRobot[,] Canvas { get; private set; }
         
-        public void CreateDefaultCanvas()
-        {
-            Canvas = CanvasFactory.CreateDefaultCanvas();            
-        }
-
-        public void CreateCanvas(int dimensionX, int dimensionY)
-        {
-            Canvas = CanvasFactory.CreateCustomCanvas(dimensionX, dimensionY);            
-        }
-
         public string Set(int xPos, int yPos, string facing)
         {
             if (Canvas == null)
@@ -80,5 +67,19 @@ namespace ToyRobot.Main
                 return robotManager.ReportError();
             }
         }
+        
+        #region Canvas
+        public IBot[,] Canvas { get; private set; }
+
+        public void CreateDefaultCanvas()
+        {
+            Canvas = CanvasFactory.CreateDefaultCanvas();
+        }
+
+        public void CreateCanvas(int dimensionX, int dimensionY)
+        {
+            Canvas = CanvasFactory.CreateCustomCanvas(dimensionX, dimensionY);
+        }
+        #endregion
     }
 }

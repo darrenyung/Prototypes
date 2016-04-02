@@ -2,7 +2,7 @@
 
 namespace ToyRobot.Robot.Movement
 {
-    public interface IMovement
+    public interface IBotMovement
     {
         void Left();    
         void Right();

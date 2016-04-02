@@ -2,7 +2,7 @@
 
 namespace ToyRobot.Robot
 {
-    public interface IRobot
+    public interface IBot
     {
         string SetPosition(int x, int y, string facing);
         string Report();

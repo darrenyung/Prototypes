@@ -4,14 +4,14 @@ namespace ToyRobot.Main.Factory
 {
     public static class CanvasFactory
     {
-        public static IRobot[,] CreateDefaultCanvas()
+        public static IBot[,] CreateDefaultCanvas()
         {
-            return new IRobot[5,5];
+            return new IBot[5,5];
         }
 
-        public static IRobot[,] CreateCustomCanvas(int dimensionX, int dimensionY)
+        public static IBot[,] CreateCustomCanvas(int dimensionX, int dimensionY)
         {
-            return new IRobot[dimensionX, dimensionY];
+            return new IBot[dimensionX, dimensionY];
         }
     }
 }

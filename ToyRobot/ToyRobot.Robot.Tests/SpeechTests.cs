@@ -8,13 +8,13 @@ namespace ToyRobot.Robot.Tests
     {
         #region Private Variables
 
-        private IRobotSpeech speechManager;
+        private IBotSpeech speechManager;
 
         #endregion
 
         public SpeechTests()
         {
-            speechManager = new RobotSpeech();
+            speechManager = new BotSpeech();
         }
 
         [TestMethod]

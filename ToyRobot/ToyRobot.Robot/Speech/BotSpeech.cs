@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ToyRobot.Robot.Speech
 {
-    public class RobotSpeech : IRobotSpeech
+    public class BotSpeech : IBotSpeech
     {
         public string ReportDanger()
         {

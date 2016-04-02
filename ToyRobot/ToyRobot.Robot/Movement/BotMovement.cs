@@ -3,11 +3,11 @@ using ToyRobot.Movement.Enum;
 
 namespace ToyRobot.Robot.Movement
 {
-    public class Movement : IMovement
+    public class BotMovement : IBotMovement
     {
         private Heading currHeading;
 
-        public Movement()
+        public BotMovement()
         {
             currHeading = Heading.Unknown;
         }
