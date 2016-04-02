@@ -6,8 +6,8 @@
     <ProjectGuid>{1F97C5C9-D41D-4A67-8F92-071FC3BF3785}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ToyRobot.Canvas.Tests</RootNamespace>
-    <AssemblyName>ToyRobot.Canvas.Tests</AssemblyName>
+    <RootNamespace>ToyRobot.Main.Tests</RootNamespace>
+    <AssemblyName>ToyRobot.Main.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,7 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
       <Private>True</Private>
@@ -59,13 +61,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ToyRobot.Main\ToyRobot.Main.csproj">
+      <Project>{d895abb6-cbe2-4dc6-a2c6-30994905745c}</Project>
+      <Name>ToyRobot.Main</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ToyRobot.Robot\ToyRobot.Robot.csproj">
       <Project>{f34d0b53-017f-44d0-b75c-d3a5720a3051}</Project>
       <Name>ToyRobot.Robot</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ToyRobot.Space\ToyRobot.Canvas.csproj">
-      <Project>{D895ABB6-CBE2-4DC6-A2C6-30994905745C}</Project>
-      <Name>ToyRobot.Canvas</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

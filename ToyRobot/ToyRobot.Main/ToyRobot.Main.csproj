@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CanvasManager.cs" />
+    <Compile Include="MainManager.cs" />
     <Compile Include="Factory\CanvasFactory.cs" />
-    <Compile Include="ICanvasManager.cs" />
+    <Compile Include="IMainManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
