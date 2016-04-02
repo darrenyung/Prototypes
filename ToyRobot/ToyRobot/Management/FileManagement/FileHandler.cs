@@ -20,7 +20,7 @@ namespace ToyRobot.Management.FileManagement
             var file = new StreamReader(fileLocation);
             while((line = file.ReadLine()) != null)
             {
-                input = line + ","; 
+                input = line + "|"; 
             }
 
             file.Close();

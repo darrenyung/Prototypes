@@ -10,17 +10,17 @@ namespace ToyRobot.Robot.Speech
     {
         public string ReportDanger()
         {
-            return "Nope";
+            return "Bot: Nope";
         }
         
         public string ReportPosition(int x, int y, string facing)
         {
-            return string.Format("Currently in {0},{1}. Facing {2}", x, y, facing);
+            return string.Format("Bot: Currently in {0},{1}. Facing {2}", x, y, facing);
         }
 
         public string ReportError()
         {
-            return string.Format("Unable to comply to instruction");
+            return string.Format("Bot: Unable to comply to instruction");
         }
     }
 }

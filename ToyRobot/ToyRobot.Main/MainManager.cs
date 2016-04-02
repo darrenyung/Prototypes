@@ -20,11 +20,10 @@ namespace ToyRobot.Main
         
         public string Set(int xPos, int yPos, string facing)
         {
-            if (canvas == null)
-                throw new NullReferenceException("Playing field is missing");
+            CreateDefaultCanvas();
 
-            canvas[xPos, yPos] = robotManager;
             robotManager.SetPosition(xPos, yPos, facing);
+            canvas[xPos, yPos] = robotManager;
 
             return robotManager.Report();
         }

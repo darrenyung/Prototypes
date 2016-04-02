@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ToyRobot.Management.FileManagement
+﻿namespace ToyRobot.Management.FileManagement
 {
     public interface IFileHandler
     {
+        /// <summary>
+        /// Open file and read
+        /// </summary>
+        /// <param name="fileLocation"></param>
+        /// <returns>File input in CSV format</returns>
         string ReadFile(string fileLocation);
     }
 }

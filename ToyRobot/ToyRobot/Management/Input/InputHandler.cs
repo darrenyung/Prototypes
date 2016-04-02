@@ -45,14 +45,9 @@ namespace ToyRobot.Management.Input
 
         }
 
-        public void PrintFileContentHelp()
-        {
-            Console.WriteLine("File content should at least start with PLACE X,Y,F");
-        }
-
         public void PrintValidInputs()
         {
-            Console.WriteLine("move, left, right, report (Enter 'quit' to exit)");
+            Console.WriteLine("move, left, right, report or place x,y,f (Enter 'quit' to exit)");
         }
 
         public void PrintHelp()

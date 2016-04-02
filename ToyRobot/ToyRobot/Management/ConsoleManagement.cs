@@ -35,29 +35,23 @@ namespace ToyRobot
 
         public void Start(string initialSetup)
         {
-            var commands = initialSetup.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var commands = initialSetup.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
             if (commands.Length == 0)
                 Start();
 
+            bool hasPlacement = false;
+
             foreach (var command in commands)
             {
-                if (!command.ToLower().Contains("place"))
-                {
-                    inputHandler.PrintFileContentHelp();
-                    break;
-                }
-                else
-                {
-                    //Process the file
-                }
+                if (!command.ToLower().Contains("place") && !hasPlacement)
+                    continue;
+
+                hasPlacement = true;
             }
         }
 
         public void Start()
         {
-            if (!mainManager.IsCanvasSet())
-                mainManager.CreateDefaultCanvas();
-
             Console.WriteLine("Ready");
             Console.WriteLine("Available Commands :");
             inputHandler.PrintValidInputs();
@@ -65,29 +59,34 @@ namespace ToyRobot
             userInput = Console.ReadLine().ToUpper();    
             while(userInput != "QUIT")
             {
-                if(!inputHandler.ValidateUserInput(userInput))
-                    inputHandler.PrintValidInputs();
-                else
-                {
-                    switch(inputHandler.CurrUserInput)
-                    {
-                        case UserInput.LEFT:
-                        case UserInput.RIGHT:
-                            mainManager.Turn(inputHandler.CurrUserInput.ToString());
-                            break;
-                        case UserInput.MOVE:
-                            mainManager.Move();
-                            break;
-                        case UserInput.REPORT:
-                            mainManager.Report();
-                            break;
-                        default:
-                            inputHandler.PrintValidInputs();
-                            break;
-                    }
-                }
-
+                UserCommand(userInput);
                 userInput = Console.ReadLine().ToUpper();
+            }
+        }
+
+        private void UserCommand(string userInput)
+        {
+            if (!inputHandler.ValidateUserInput(userInput))
+                inputHandler.PrintValidInputs();
+            else
+            {
+                switch (inputHandler.CurrUserInput)
+                {
+                    case UserInput.LEFT:
+                    case UserInput.RIGHT:
+                        Console.WriteLine(mainManager.Turn(inputHandler.CurrUserInput.ToString()));
+                        break;
+                    case UserInput.MOVE:
+                        Console.WriteLine(mainManager.Move());
+                        break;
+                    case UserInput.REPORT:
+                        Console.WriteLine(mainManager.Report());
+                        break;
+                    case UserInput.PLACE:
+                    default:
+                        inputHandler.PrintValidInputs();
+                        break;
+                }
             }
         }
     }
