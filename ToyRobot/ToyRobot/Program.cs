@@ -2,9 +2,10 @@
 
 using Ninject;
 using Ninject.Modules;
-using ToyRobot.Input;
-using ToyRobot.FileManagement;
+using ToyRobot.Management.Input;
+using ToyRobot.Management.FileManagement;
 using ToyRobot.DependencyResolver.Module;
+using ToyRobot.Main;
 
 namespace ToyRobot
 {
@@ -12,17 +13,21 @@ namespace ToyRobot
     {
         static void Main(string[] args)
         {
-            SetUpNinject();
+            var kernel = SetUpNinject();            
+            var consoleManagement = new ConsoleManagement(
+                    kernel.Get<IInputHandler>(), 
+                    kernel.Get<IFileHandler>(),
+                    kernel.Get<IMainManager>());
 
             if (args.Length > 0)
-            {
-
-            }
+                consoleManagement.ProcessInput(args);
+            else
+                consoleManagement.Start();
         }    
 
-        static void SetUpNinject()
+        static IKernel SetUpNinject()
         {
-            var kernal = new StandardKernel();
+            IKernel kernal = new StandardKernel();
             kernal.Bind<IInputHandler>().To<InputHandler>();
             kernal.Bind<IFileHandler>().To<FileHandler>();
 
@@ -33,6 +38,8 @@ namespace ToyRobot
             };
 
             kernal.Load(modules);
+
+            return kernal;
         }
     }
 }

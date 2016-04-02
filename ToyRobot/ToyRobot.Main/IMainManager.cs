@@ -22,11 +22,13 @@ namespace ToyRobot.Main
         /// <param name="xPos"></param>
         /// <param name="yPos"></param>
         string Set(int xPos, int yPos, string facing);
-
-        IBot[,] Canvas { get; }
-
+        
         string Move();
 
         string Turn(string turnDirection);
+
+        string Report();
+
+        bool IsCanvasSet();
     }
 }

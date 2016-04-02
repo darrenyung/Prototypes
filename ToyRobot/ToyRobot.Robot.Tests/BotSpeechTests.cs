@@ -4,7 +4,7 @@ using ToyRobot.Robot.Speech;
 namespace ToyRobot.Robot.Tests
 {
     [TestClass]
-    public class SpeechTests
+    public class BotSpeechTests
     {
         #region Private Variables
 
@@ -12,7 +12,7 @@ namespace ToyRobot.Robot.Tests
 
         #endregion
 
-        public SpeechTests()
+        public BotSpeechTests()
         {
             speechManager = new BotSpeech();
         }

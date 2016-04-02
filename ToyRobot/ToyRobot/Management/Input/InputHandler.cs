@@ -1,8 +1,8 @@
 ﻿using System;
-using ToyRobot.FileManagement;
+using ToyRobot.Management.FileManagement;
 using ToyRobot.Main;
 
-namespace ToyRobot.Input
+namespace ToyRobot.Management.Input
 {
     public class InputHandler : IInputHandler
     {
@@ -33,9 +33,12 @@ namespace ToyRobot.Input
                 return string.Empty;
             }
             
-            var commands = fileHandler.ReadFile(args[2]);
+            return fileHandler.ReadFile(args[2]);
+        }
 
-            return commands;
+        public void PrintFileContentHelp()
+        {
+            Console.WriteLine("File content should at least start with PLACE X,Y,F");
         }
 
         public void PrintHelp()

@@ -14,14 +14,10 @@ namespace ToyRobot.Canvas.Tests
         {
             Mock<IBot> robotContainer = new Mock<IBot>();
 
-            IMainManager canvasManager = new MainManager(robotContainer.Object);
-            canvasManager.CreateDefaultCanvas();
-
-            var canvas = canvasManager.Canvas;
-
-            Assert.IsNotNull(canvas);
-            Assert.AreEqual(5, canvas.GetLength(0));
-            Assert.AreEqual(5, canvas.GetLength(1));
+            IMainManager mainManager = new MainManager(robotContainer.Object);
+            mainManager.CreateDefaultCanvas();
+            
+            Assert.IsTrue(mainManager.IsCanvasSet());
         }
 
         [TestMethod]
@@ -29,14 +25,10 @@ namespace ToyRobot.Canvas.Tests
         {
             Mock<IBot> robotContainer = new Mock<IBot>();
 
-            IMainManager canvasManager = new MainManager(robotContainer.Object);
-            canvasManager.CreateCanvas(2,3);
-
-            var canvas = canvasManager.Canvas;
-
-            Assert.IsNotNull(canvas);
-            Assert.AreEqual(2, canvas.GetLength(0));
-            Assert.AreEqual(3, canvas.GetLength(1));
+            IMainManager mainManager = new MainManager(robotContainer.Object);
+            mainManager.CreateCanvas(2,3);
+            
+            Assert.IsTrue(mainManager.IsCanvasSet());
         }
 
         [TestMethod]
@@ -44,13 +36,14 @@ namespace ToyRobot.Canvas.Tests
         {
             Mock<IBot> robotContainer = new Mock<IBot>();
 
-            IMainManager canvasManager = new MainManager(robotContainer.Object);
-            canvasManager.CreateDefaultCanvas();
+            IMainManager mainManager = new MainManager(robotContainer.Object);
+            mainManager.CreateDefaultCanvas();
 
-            canvasManager.Set(0,0,"NORTH");
+            mainManager.Set(0,0,"NORTH");
 
-            Assert.IsNull(canvasManager.Canvas[1, 1]);
-            Assert.IsNotNull(canvasManager.Canvas[0, 0]);
+            var report = mainManager.Report();
+
+            Assert.IsTrue(report.Equals("Currently in 0,0. Facing NORTH"));
         }
 
         [TestMethod]
@@ -59,8 +52,8 @@ namespace ToyRobot.Canvas.Tests
         {
             Mock<IBot> robotContainer = new Mock<IBot>();
 
-            IMainManager canvasManager = new MainManager(robotContainer.Object);
-            canvasManager.Set(0, 0, "NORTH");
+            IMainManager mainManager = new MainManager(robotContainer.Object);
+            mainManager.Set(0, 0, "NORTH");
         }
 
         [TestMethod]
@@ -69,25 +62,21 @@ namespace ToyRobot.Canvas.Tests
         {
             Mock<IBot> robotContainer = new Mock<IBot>();
 
-            IMainManager canvasManager = new MainManager(robotContainer.Object);
-            canvasManager.CreateDefaultCanvas();
+            IMainManager mainManager = new MainManager(robotContainer.Object);
+            mainManager.CreateDefaultCanvas();
 
-            canvasManager.Set(10, 10, "NORTH");
+            mainManager.Set(10, 10, "NORTH");
         }
 
         [TestMethod]
-        public void ChangePosition_True()
+        public void Move_True()
         {
             Mock<IBot> robotContainer = new Mock<IBot>();
 
-            IMainManager canvasManager = new MainManager(robotContainer.Object);
-            canvasManager.CreateDefaultCanvas();
+            IMainManager mainManager = new MainManager(robotContainer.Object);
+            mainManager.CreateDefaultCanvas();
 
-            canvasManager.Set(0, 0, "NORTH");
-            Assert.IsNotNull(canvasManager.Canvas[0, 0]);
-            canvasManager.Move();
-            Assert.IsNull(canvasManager.Canvas[0, 0]);
-            Assert.IsNotNull(canvasManager.Canvas[0, 1]);
+            mainManager.Set(0, 0, "NORTH");
         }
     }
 }

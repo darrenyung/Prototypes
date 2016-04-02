@@ -9,6 +9,7 @@ namespace ToyRobot.Main
         #region Private Variables
 
         private IBot robotManager;
+        private IBot[,] canvas;
 
         #endregion
 
@@ -19,10 +20,10 @@ namespace ToyRobot.Main
         
         public string Set(int xPos, int yPos, string facing)
         {
-            if (Canvas == null)
+            if (canvas == null)
                 throw new NullReferenceException("Playing field is missing");
 
-            Canvas[xPos, yPos] = robotManager;
+            canvas[xPos, yPos] = robotManager;
             robotManager.SetPosition(xPos, yPos, facing);
 
             return robotManager.Report();
@@ -50,11 +51,11 @@ namespace ToyRobot.Main
                 var newXPos = 0;
                 var newYPos = 0;
 
-                var currRobot = Canvas[currXPos, currYPos];
+                var currRobot = canvas[currXPos, currYPos];
 
                 robotManager.Move(out newXPos, out newYPos);
-                Canvas[newXPos, newYPos] = currRobot;
-                Canvas[currXPos, currYPos] = null;
+                canvas[newXPos, newYPos] = currRobot;
+                canvas[currXPos, currYPos] = null;
                 
                 return robotManager.Report();
             }
@@ -67,18 +68,27 @@ namespace ToyRobot.Main
                 return robotManager.ReportError();
             }
         }
+
+        public string Report()
+        {
+            return robotManager.Report();
+        }
         
         #region Canvas
-        public IBot[,] Canvas { get; private set; }
+
+        public bool IsCanvasSet()
+        {
+            return canvas != null;
+        }
 
         public void CreateDefaultCanvas()
         {
-            Canvas = CanvasFactory.CreateDefaultCanvas();
+            canvas = CanvasFactory.CreateDefaultCanvas();
         }
 
         public void CreateCanvas(int dimensionX, int dimensionY)
         {
-            Canvas = CanvasFactory.CreateCustomCanvas(dimensionX, dimensionY);
+            canvas = CanvasFactory.CreateCustomCanvas(dimensionX, dimensionY);
         }
         #endregion
     }
