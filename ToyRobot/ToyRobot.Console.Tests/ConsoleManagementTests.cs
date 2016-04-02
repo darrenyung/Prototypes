@@ -3,7 +3,7 @@
 namespace ToyRobot.Console.Tests
 {
     [TestClass]
-    public class Test
+    public class ConsoleManagementTests
     {
         [TestMethod]
         public void TestMethod1()

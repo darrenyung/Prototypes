@@ -5,7 +5,7 @@ using ToyRobot.Robot.Movement;
 namespace ToyRobot.Robot.Tests
 {
     [TestClass]
-    public class MovementTests
+    public class BotMovementTests
     {
         [TestMethod]
         public void GetFacingPosition_True()
@@ -13,7 +13,7 @@ namespace ToyRobot.Robot.Tests
             var movementManager = new BotMovement();
             movementManager.SetFacingPosition(Heading.East);
 
-            Assert.AreEqual(Heading.East, movementManager.GetFacingPosition());
+            Assert.AreEqual(Heading.East, movementManager.CurrHeading);
         }
 
         [TestMethod]
@@ -22,7 +22,7 @@ namespace ToyRobot.Robot.Tests
             var movementManager = new BotMovement();
             movementManager.SetFacingPosition(Heading.East);
 
-            Assert.AreNotEqual(Heading.West, movementManager.GetFacingPosition());
+            Assert.AreNotEqual(Heading.West, movementManager.CurrHeading);
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ namespace ToyRobot.Robot.Tests
             movementManager.SetFacingPosition(Heading.East);
             movementManager.Right();
 
-            Assert.AreEqual(Heading.South, movementManager.GetFacingPosition());
+            Assert.AreEqual(Heading.South, movementManager.CurrHeading);
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace ToyRobot.Robot.Tests
             movementManager.SetFacingPosition(Heading.East);
             movementManager.Right();
 
-            Assert.AreNotEqual(Heading.North, movementManager.GetFacingPosition());
+            Assert.AreNotEqual(Heading.North, movementManager.CurrHeading);
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace ToyRobot.Robot.Tests
             movementManager.SetFacingPosition(Heading.East);
             movementManager.Left();
 
-            Assert.AreEqual(Heading.North, movementManager.GetFacingPosition());
+            Assert.AreEqual(Heading.North, movementManager.CurrHeading);
         }
 
         [TestMethod]
@@ -62,7 +62,7 @@ namespace ToyRobot.Robot.Tests
             movementManager.SetFacingPosition(Heading.East);
             movementManager.Left();
 
-            Assert.AreNotEqual(Heading.South, movementManager.GetFacingPosition());
+            Assert.AreNotEqual(Heading.South, movementManager.CurrHeading);
         }
     }
 }

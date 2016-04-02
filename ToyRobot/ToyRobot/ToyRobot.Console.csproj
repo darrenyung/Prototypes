@@ -50,6 +50,7 @@
     <Compile Include="Management\ConsoleManagement.cs" />
     <Compile Include="Management\FileManagement\FileHandler.cs" />
     <Compile Include="Management\FileManagement\IFileHandler.cs" />
+    <Compile Include="Management\Input\UserInput.cs" />
     <Compile Include="Management\Input\IInputHandler.cs" />
     <Compile Include="Management\Input\InputHandler.cs" />
     <Compile Include="Program.cs" />

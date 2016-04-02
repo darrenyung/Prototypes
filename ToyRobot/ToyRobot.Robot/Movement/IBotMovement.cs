@@ -9,6 +9,6 @@ namespace ToyRobot.Robot.Movement
 
         void SetFacingPosition(Heading heading);
 
-        Heading GetFacingPosition();
+        Heading CurrHeading { get; }
     }
 }

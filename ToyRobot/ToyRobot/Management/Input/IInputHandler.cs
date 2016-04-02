@@ -8,8 +8,11 @@ namespace ToyRobot.Management.Input
 {
     public interface IInputHandler
     {
+        UserInput CurrUserInput { get; }
         string ProcessArgs(string[] args);
         void PrintHelp();
         void PrintFileContentHelp();
+        bool ValidateUserInput(string input);
+        void PrintValidInputs();
     }
 }

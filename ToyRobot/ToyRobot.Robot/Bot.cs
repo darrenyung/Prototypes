@@ -40,15 +40,15 @@ namespace ToyRobot.Robot
 
             return Report();
         }
-       
+
         public void Turn(string turnDirection)
         {
             if (string.IsNullOrEmpty(turnDirection))
                 throw new Exception();
 
-            if (turnDirection.ToLower().Equals("Right"))
+            if (turnDirection.ToLower().Equals("right"))
                 movementManager.Right();
-            else if (turnDirection.ToLower().Equals("Left"))
+            else if (turnDirection.ToLower().Equals("left"))
                 movementManager.Left();
             else
                 throw new Exception();
@@ -58,8 +58,15 @@ namespace ToyRobot.Robot
         {
             newXPos = CurrXPosition;
             newYPos = CurrYPosition;
-            
 
+            if (movementManager.CurrHeading == Heading.North)
+                newYPos = newYPos + 1;
+            else if (movementManager.CurrHeading == Heading.South)
+                newYPos = newYPos - 1;
+            else if (movementManager.CurrHeading == Heading.East)
+                newXPos = newXPos + 1;
+            else if (movementManager.CurrHeading == Heading.West)
+                newXPos = newXPos - 1;
         }
 
         #region Speeches
@@ -76,7 +83,7 @@ namespace ToyRobot.Robot
 
         public string Report()
         {
-            return speechManager.ReportPosition(CurrXPosition, CurrYPosition, movementManager.GetFacingPosition().ToString());
+            return speechManager.ReportPosition(CurrXPosition, CurrYPosition, movementManager.CurrHeading.ToString());
         }
 
         #endregion        

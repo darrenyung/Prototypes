@@ -48,9 +48,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="MovementTests.cs" />
-    <Compile Include="RobotTests.cs" />
-    <Compile Include="SpeechTests.cs" />
+    <Compile Include="BotMovementTests.cs" />
+    <Compile Include="BotTests.cs" />
+    <Compile Include="BotSpeechTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

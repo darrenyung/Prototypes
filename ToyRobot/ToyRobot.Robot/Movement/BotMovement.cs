@@ -5,63 +5,59 @@ namespace ToyRobot.Robot.Movement
 {
     public class BotMovement : IBotMovement
     {
-        private Heading currHeading;
 
         public BotMovement()
         {
-            currHeading = Heading.Unknown;
+            CurrHeading = Heading.Unknown;
         }
+
+        public Heading CurrHeading { get; private set; }
 
         public void Left()
         {
-            switch (currHeading)
+            switch (CurrHeading)
             {
                 case Heading.North:
-                    currHeading = Heading.West;
+                    CurrHeading = Heading.West;
                     break;
                 case Heading.West:
-                    currHeading = Heading.South;
+                    CurrHeading = Heading.South;
                     break;
                 case Heading.South:
-                    currHeading = Heading.East;
+                    CurrHeading = Heading.East;
                     break;
                 case Heading.East:
-                    currHeading = Heading.North;
+                    CurrHeading = Heading.North;
                     break;
                 default:
                     throw new Exception();
-            }      
+            }
         }
-        
+
         public void Right()
         {
-            switch (currHeading)
+            switch (CurrHeading)
             {
                 case Heading.North:
-                    currHeading = Heading.East;
+                    CurrHeading = Heading.East;
                     break;
                 case Heading.East:
-                    currHeading = Heading.South;
+                    CurrHeading = Heading.South;
                     break;
                 case Heading.South:
-                    currHeading = Heading.West;
+                    CurrHeading = Heading.West;
                     break;
                 case Heading.West:
-                    currHeading = Heading.North;
+                    CurrHeading = Heading.North;
                     break;
                 default:
                     throw new Exception();
-            }           
+            }
         }
 
         public void SetFacingPosition(Heading heading)
         {
-            currHeading = heading;
-        }
-
-        public Heading GetFacingPosition()
-        {
-            return currHeading;
-        }
+            CurrHeading = heading;
+        }        
     }
 }

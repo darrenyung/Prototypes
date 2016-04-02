@@ -49,5 +49,11 @@ namespace ToyRobot.Robot.Tests
         {
 
         }
+
+        [TestMethod]
+        public void MoveNorth_True()
+        {
+           
+        }
     }
 }

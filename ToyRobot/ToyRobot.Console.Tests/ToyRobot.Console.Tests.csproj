@@ -48,7 +48,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Test.cs" />
+    <Compile Include="ConsoleManagementTests.cs" />
+    <Compile Include="InputHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Choose>

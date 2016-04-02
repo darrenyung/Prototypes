@@ -46,6 +46,10 @@ namespace ToyRobot
                     inputHandler.PrintFileContentHelp();
                     break;
                 }
+                else
+                {
+                    //Process the file
+                }
             }
         }
 
@@ -55,11 +59,35 @@ namespace ToyRobot
                 mainManager.CreateDefaultCanvas();
 
             Console.WriteLine("Ready");
-            Console.WriteLine("Available Commands : move, left, right, report (Enter 'quit' to exit)");
+            Console.WriteLine("Available Commands :");
+            inputHandler.PrintValidInputs();
             var userInput = string.Empty;
-            userInput = Console.ReadLine();
-            while(userInput != "quit")
+            userInput = Console.ReadLine().ToUpper();    
+            while(userInput != "QUIT")
             {
+                if(!inputHandler.ValidateUserInput(userInput))
+                    inputHandler.PrintValidInputs();
+                else
+                {
+                    switch(inputHandler.CurrUserInput)
+                    {
+                        case UserInput.LEFT:
+                        case UserInput.RIGHT:
+                            mainManager.Turn(inputHandler.CurrUserInput.ToString());
+                            break;
+                        case UserInput.MOVE:
+                            mainManager.Move();
+                            break;
+                        case UserInput.REPORT:
+                            mainManager.Report();
+                            break;
+                        default:
+                            inputHandler.PrintValidInputs();
+                            break;
+                    }
+                }
+
+                userInput = Console.ReadLine().ToUpper();
             }
         }
     }
