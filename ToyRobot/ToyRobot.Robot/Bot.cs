@@ -12,8 +12,8 @@ namespace ToyRobot.Robot
         private IBotMovement movementManager;
         private IBotSpeech speechManager;
 
-        public int CurrXPosition { get; private set; }
-        public int CurrYPosition { get; private set; }
+        private int prevXPos;
+        private int prevYPos;
 
         #endregion
 
@@ -54,6 +54,9 @@ namespace ToyRobot.Robot
 
         public void Move()
         {
+            prevXPos = CurrXPosition;
+            prevYPos = CurrYPosition;
+
             if (movementManager.CurrHeading == Heading.NORTH)
                 CurrYPosition = CurrYPosition + 1;
             else if (movementManager.CurrHeading == Heading.SOUTH)
@@ -63,6 +66,16 @@ namespace ToyRobot.Robot
             else if (movementManager.CurrHeading == Heading.WEST)
                 CurrXPosition = CurrXPosition - 1;
         }
+
+        public void RollbackPosition()
+        {
+            CurrXPosition = prevXPos;
+            CurrYPosition = prevYPos;
+        }
+
+        public int CurrXPosition { get; private set; }
+        public int CurrYPosition { get; private set; }
+
 
         #region Speeches
 

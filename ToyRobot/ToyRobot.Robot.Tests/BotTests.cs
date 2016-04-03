@@ -121,5 +121,23 @@ namespace ToyRobot.Robot.Tests
             Assert.IsTrue(bot.CurrYPosition == 3);
             Assert.IsTrue(bot.CurrXPosition == 1);
         }
+        
+        [TestMethod]
+        public void TestRollbackPosition_True()
+        {
+            robotMovementContainer.Setup(x => x.CurrHeading).Returns(Heading.EAST);
+            bot = new Bot(robotMovementContainer.Object, robotSpeechContainer.Object);
+            bot.SetPosition(2, 3, Heading.EAST.ToString());
+
+            bot.Move();
+
+            Assert.IsTrue(bot.CurrYPosition == 3);
+            Assert.IsTrue(bot.CurrXPosition == 3);
+
+            bot.RollbackPosition();
+            
+            Assert.IsTrue(bot.CurrYPosition == 3);
+            Assert.IsTrue(bot.CurrXPosition == 2);
+        }
     }
 }

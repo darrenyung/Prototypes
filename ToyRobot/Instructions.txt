@@ -1,0 +1,3 @@
+Sample console command is
+1. ToyRobot -f "C:\\Temp\\input.txt"
+2. ToyRobot

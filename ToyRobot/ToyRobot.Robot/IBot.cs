@@ -50,5 +50,10 @@ namespace ToyRobot.Robot
         /// Move Robot
         /// </summary>
         void Move();
+
+        /// <summary>
+        /// Rollback to previous step
+        /// </summary>
+        void RollbackPosition();
     }
 }

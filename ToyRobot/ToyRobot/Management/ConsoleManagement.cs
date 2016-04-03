@@ -52,11 +52,19 @@ namespace ToyRobot
 
             foreach (var command in commands)
             {
-                if (!command.ToLower().Contains("place") && !hasPlacement)
-                    continue;
+                try
+                {
+                    if (!command.ToLower().Contains("place") && !hasPlacement)
+                        continue;
 
-                UserCommand(command);
-                hasPlacement = true;
+                    UserCommand(command);
+                    hasPlacement = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    continue;
+                }
             }
 
             Start();

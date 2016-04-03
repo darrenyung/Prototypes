@@ -43,6 +43,7 @@ namespace ToyRobot.Main
             }
             catch (Exception)
             {
+                canvas = null; //Should we destroy the object when invalid command used?
                 throw new Exception(robotManager.ReportError());
             }
         }
@@ -76,6 +77,7 @@ namespace ToyRobot.Main
             }
             catch(IndexOutOfRangeException)
             {
+                robotManager.RollbackPosition();
                 throw new Exception(robotManager.ReportDanger());
             }
             catch (Exception)
