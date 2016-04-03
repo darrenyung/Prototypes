@@ -66,7 +66,7 @@ namespace ToyRobot
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine(e);
+                    Console.WriteLine(e.Message);
                 }
 
                 userInput = Console.ReadLine().ToUpper();

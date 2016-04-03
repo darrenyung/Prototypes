@@ -86,6 +86,9 @@ namespace ToyRobot.Main
 
         public string Report()
         {
+            if (canvas == null)
+                throw new Exception(robotManager.ReportError());
+
             return robotManager.Report();
         }
         
@@ -96,7 +99,7 @@ namespace ToyRobot.Main
             return canvas != null;
         }
 
-        public void CreateDefaultCanvas()
+        private void CreateDefaultCanvas()
         {
             canvas = CanvasFactory.CreateDefaultCanvas();
         }

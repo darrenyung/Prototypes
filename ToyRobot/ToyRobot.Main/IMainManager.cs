@@ -2,14 +2,9 @@
 namespace ToyRobot.Main
 {
     public interface IMainManager
-    {
+    {   
         /// <summary>
-        /// Create a canvas
-        /// </summary>        
-        void CreateDefaultCanvas();
-        
-        /// <summary>
-        /// Position of bot on canvas
+        /// Creates a canvas and position of bot on it
         /// </summary>
         /// <param name="xPos"></param>
         /// <param name="yPos"></param>

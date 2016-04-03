@@ -10,39 +10,31 @@ namespace ToyRobot.Canvas.Tests
     public class Test
     {
         private const string DEFAULT_PLACEMENT = "PLACE 0,0,NORTH";
+        private Mock<IBot> robotContainer;
 
-       [TestMethod]
-        public void CreateDefaultCanvas_True()
+        [TestInitialize]
+        public void Initialize()
         {
-            Mock<IBot> robotContainer = new Mock<IBot>();
-
-            IMainManager mainManager = new MainManager(robotContainer.Object);
-            mainManager.CreateDefaultCanvas();
-            
-            Assert.IsTrue(mainManager.IsCanvasSet());
+            robotContainer = new Mock<IBot>();
         }
-        
+
         [TestMethod]
         public void SetRobot_True()
         {
-            Mock<IBot> robotContainer = new Mock<IBot>();
+            robotContainer.Setup(x => x.Report()).Returns("FakeReturn");
 
-            IMainManager mainManager = new MainManager(robotContainer.Object);
-            mainManager.CreateDefaultCanvas();
-
+            IMainManager mainManager = new MainManager(robotContainer.Object);            
             mainManager.Set(DEFAULT_PLACEMENT);
 
             var report = mainManager.Report();
 
-            Assert.IsTrue(report.Equals("Currently in 0,0. Facing NORTH"));
+            Assert.IsTrue(report.Equals("FakeReturn"));
         }
         
         [TestMethod]
         [ExpectedException(typeof(Exception))]
         public void SetRobot_OutOfBounds()
         {
-            Mock<IBot> robotContainer = new Mock<IBot>();
-
             IMainManager mainManager = new MainManager(robotContainer.Object);
             
             mainManager.Set("PLACE 10,10,NORTH");
@@ -51,12 +43,10 @@ namespace ToyRobot.Canvas.Tests
         [TestMethod]
         public void Move_True()
         {
-            Mock<IBot> robotContainer = new Mock<IBot>();
-
-            IMainManager mainManager = new MainManager(robotContainer.Object);
-            mainManager.CreateDefaultCanvas();
-
+            IMainManager mainManager = new MainManager(robotContainer.Object);            
             mainManager.Set(DEFAULT_PLACEMENT);
+
+            mainManager.Move();
         }
     }
 }
