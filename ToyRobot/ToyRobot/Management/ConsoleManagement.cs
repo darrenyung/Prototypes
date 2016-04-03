@@ -46,6 +46,7 @@ namespace ToyRobot
                 if (!command.ToLower().Contains("place") && !hasPlacement)
                     continue;
 
+                UserCommand(command);
                 hasPlacement = true;
             }
         }
@@ -59,7 +60,15 @@ namespace ToyRobot
             userInput = Console.ReadLine().ToUpper();    
             while(userInput != "QUIT")
             {
-                UserCommand(userInput);
+                try
+                {
+                    UserCommand(userInput);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
                 userInput = Console.ReadLine().ToUpper();
             }
         }
@@ -83,6 +92,8 @@ namespace ToyRobot
                         Console.WriteLine(mainManager.Report());
                         break;
                     case UserInput.PLACE:
+                        Console.WriteLine(mainManager.Set(userInput));
+                        break;
                     default:
                         inputHandler.PrintValidInputs();
                         break;

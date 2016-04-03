@@ -8,7 +8,7 @@ namespace ToyRobot.Robot.Movement
 
         public BotMovement()
         {
-            CurrHeading = Heading.Unknown;
+            CurrHeading = Heading.UNKNOWN;
         }
 
         public Heading CurrHeading { get; private set; }
@@ -17,17 +17,17 @@ namespace ToyRobot.Robot.Movement
         {
             switch (CurrHeading)
             {
-                case Heading.North:
-                    CurrHeading = Heading.West;
+                case Heading.NORTH:
+                    CurrHeading = Heading.WEST;
                     break;
-                case Heading.West:
-                    CurrHeading = Heading.South;
+                case Heading.WEST:
+                    CurrHeading = Heading.SOUTH;
                     break;
-                case Heading.South:
-                    CurrHeading = Heading.East;
+                case Heading.SOUTH:
+                    CurrHeading = Heading.EAST;
                     break;
-                case Heading.East:
-                    CurrHeading = Heading.North;
+                case Heading.EAST:
+                    CurrHeading = Heading.NORTH;
                     break;
                 default:
                     throw new Exception();
@@ -38,17 +38,17 @@ namespace ToyRobot.Robot.Movement
         {
             switch (CurrHeading)
             {
-                case Heading.North:
-                    CurrHeading = Heading.East;
+                case Heading.NORTH:
+                    CurrHeading = Heading.EAST;
                     break;
-                case Heading.East:
-                    CurrHeading = Heading.South;
+                case Heading.EAST:
+                    CurrHeading = Heading.SOUTH;
                     break;
-                case Heading.South:
-                    CurrHeading = Heading.West;
+                case Heading.SOUTH:
+                    CurrHeading = Heading.WEST;
                     break;
-                case Heading.West:
-                    CurrHeading = Heading.North;
+                case Heading.WEST:
+                    CurrHeading = Heading.NORTH;
                     break;
                 default:
                     throw new Exception();

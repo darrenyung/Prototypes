@@ -9,6 +9,8 @@ namespace ToyRobot.Canvas.Tests
     [TestClass]
     public class Test
     {
+        private const string DEFAULT_PLACEMENT = "PLACE 0,0,NORTH";
+
        [TestMethod]
         public void CreateDefaultCanvas_True()
         {
@@ -19,18 +21,7 @@ namespace ToyRobot.Canvas.Tests
             
             Assert.IsTrue(mainManager.IsCanvasSet());
         }
-
-        [TestMethod]
-        public void CreateCustomCanvas_True()
-        {
-            Mock<IBot> robotContainer = new Mock<IBot>();
-
-            IMainManager mainManager = new MainManager(robotContainer.Object);
-            mainManager.CreateCanvas(2,3);
-            
-            Assert.IsTrue(mainManager.IsCanvasSet());
-        }
-
+        
         [TestMethod]
         public void SetRobot_True()
         {
@@ -39,33 +30,22 @@ namespace ToyRobot.Canvas.Tests
             IMainManager mainManager = new MainManager(robotContainer.Object);
             mainManager.CreateDefaultCanvas();
 
-            mainManager.Set(0,0,"NORTH");
+            mainManager.Set(DEFAULT_PLACEMENT);
 
             var report = mainManager.Report();
 
             Assert.IsTrue(report.Equals("Currently in 0,0. Facing NORTH"));
         }
-
+        
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void SetRobot_False()
-        {
-            Mock<IBot> robotContainer = new Mock<IBot>();
-
-            IMainManager mainManager = new MainManager(robotContainer.Object);
-            mainManager.Set(0, 0, "NORTH");
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
+        [ExpectedException(typeof(Exception))]
         public void SetRobot_OutOfBounds()
         {
             Mock<IBot> robotContainer = new Mock<IBot>();
 
             IMainManager mainManager = new MainManager(robotContainer.Object);
-            mainManager.CreateDefaultCanvas();
-
-            mainManager.Set(10, 10, "NORTH");
+            
+            mainManager.Set("PLACE 10,10,NORTH");
         }
 
         [TestMethod]
@@ -76,7 +56,7 @@ namespace ToyRobot.Canvas.Tests
             IMainManager mainManager = new MainManager(robotContainer.Object);
             mainManager.CreateDefaultCanvas();
 
-            mainManager.Set(0, 0, "NORTH");
+            mainManager.Set(DEFAULT_PLACEMENT);
         }
     }
 }

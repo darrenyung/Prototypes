@@ -18,14 +18,33 @@ namespace ToyRobot.Main
             this.robotManager = robotManager;
         }
         
-        public string Set(int xPos, int yPos, string facing)
+        public string Set(string placement)
         {
-            CreateDefaultCanvas();
+            try
+            {
+                CreateDefaultCanvas();
 
-            robotManager.SetPosition(xPos, yPos, facing);
-            canvas[xPos, yPos] = robotManager;
+                var xPos = 0;
+                var yPos = 0;
+                var facing = string.Empty;
 
-            return robotManager.Report();
+                // Expected Input = PLACE 0,0,NORTH
+                var placeCommand = placement.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                var position = placeCommand[1].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                
+                int.TryParse(position[0], out xPos); 
+                int.TryParse(position[1], out yPos); 
+                facing = position[2];                
+
+                robotManager.SetPosition(xPos, yPos, facing);
+                canvas[xPos, yPos] = robotManager;
+
+                return robotManager.Report();
+            }
+            catch (Exception)
+            {
+                throw new Exception(robotManager.ReportError());
+            }
         }
 
         public string Turn(string turnDirection)
@@ -42,29 +61,26 @@ namespace ToyRobot.Main
 
         public string Move()
         {
-            var currXPos = robotManager.CurrXPosition;
-            var currYPos = robotManager.CurrYPosition;
+            var oldXPos = robotManager.CurrXPosition;
+            var oldYPos = robotManager.CurrYPosition;
             
             try
             {
-                var newXPos = 0;
-                var newYPos = 0;
+                var currRobot = canvas[oldXPos, oldYPos];
 
-                var currRobot = canvas[currXPos, currYPos];
-
-                robotManager.Move(out newXPos, out newYPos);
-                canvas[newXPos, newYPos] = currRobot;
-                canvas[currXPos, currYPos] = null;
+                robotManager.Move();
+                canvas[robotManager.CurrXPosition, robotManager.CurrYPosition] = currRobot;
+                canvas[oldXPos, oldYPos] = null;
                 
                 return robotManager.Report();
             }
             catch(IndexOutOfRangeException)
             {
-                return robotManager.ReportDanger();
+                throw new Exception(robotManager.ReportDanger());
             }
             catch (Exception)
             {
-                return robotManager.ReportError();
+                throw new Exception(robotManager.ReportError());
             }
         }
 
@@ -84,11 +100,7 @@ namespace ToyRobot.Main
         {
             canvas = CanvasFactory.CreateDefaultCanvas();
         }
-
-        public void CreateCanvas(int dimensionX, int dimensionY)
-        {
-            canvas = CanvasFactory.CreateCustomCanvas(dimensionX, dimensionY);
-        }
+                
         #endregion
     }
 }

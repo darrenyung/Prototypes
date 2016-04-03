@@ -8,10 +8,10 @@ namespace ToyRobot.Movement.Enum
 {
     public enum Heading
     {
-        Unknown,
-        North,
-        South,
-        East,
-        West
+        UNKNOWN,
+        NORTH,
+        SOUTH,
+        EAST,
+        WEST
     }
 }

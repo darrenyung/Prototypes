@@ -24,49 +24,44 @@ namespace ToyRobot.Robot
         }
 
 
-        public string SetPosition(int x, int y, string facing)
+        public void SetPosition(int x, int y, string facing)
         {
-            var heading = Heading.Unknown;
+            var heading = Heading.UNKNOWN;
             if (!Enum.TryParse(facing, out heading))
-                return speechManager.ReportError();
+                throw new Exception();
 
-            if (heading == Heading.Unknown)
-                return speechManager.ReportError();
+            if (heading == Heading.UNKNOWN)
+                throw new Exception();
 
             CurrXPosition = x;
             CurrYPosition = y;
 
-            movementManager.SetFacingPosition(heading);
-
-            return Report();
+            movementManager.SetFacingPosition(heading);            
         }
 
         public void Turn(string turnDirection)
         {
             if (string.IsNullOrEmpty(turnDirection))
-                throw new Exception();
+                throw new Exception(ReportError());
 
             if (turnDirection.ToLower().Equals("right"))
                 movementManager.Right();
             else if (turnDirection.ToLower().Equals("left"))
                 movementManager.Left();
             else
-                throw new Exception();
+                throw new Exception(ReportError());
         }
 
-        public void Move(out int newXPos, out int newYPos)
+        public void Move()
         {
-            newXPos = CurrXPosition;
-            newYPos = CurrYPosition;
-
-            if (movementManager.CurrHeading == Heading.North)
-                newYPos = newYPos + 1;
-            else if (movementManager.CurrHeading == Heading.South)
-                newYPos = newYPos - 1;
-            else if (movementManager.CurrHeading == Heading.East)
-                newXPos = newXPos + 1;
-            else if (movementManager.CurrHeading == Heading.West)
-                newXPos = newXPos - 1;
+            if (movementManager.CurrHeading == Heading.NORTH)
+                CurrYPosition = CurrYPosition + 1;
+            else if (movementManager.CurrHeading == Heading.SOUTH)
+                CurrYPosition = CurrYPosition - 1;
+            else if (movementManager.CurrHeading == Heading.EAST)
+                CurrXPosition = CurrXPosition + 1;
+            else if (movementManager.CurrHeading == Heading.WEST)
+                CurrXPosition = CurrXPosition - 1;
         }
 
         #region Speeches

@@ -1,5 +1,4 @@
-﻿using ToyRobot.Robot;
-
+﻿
 namespace ToyRobot.Main
 {
     public interface IMainManager
@@ -8,20 +7,13 @@ namespace ToyRobot.Main
         /// Create a canvas
         /// </summary>        
         void CreateDefaultCanvas();
-
-        /// <summary>
-        /// Create a custom canvas
-        /// </summary>
-        /// <param name="dimensionX"></param>
-        /// <param name="dimensionY"></param>        
-        void CreateCanvas(int dimensionX, int dimensionY);
         
         /// <summary>
         /// Position of bot on canvas
         /// </summary>
         /// <param name="xPos"></param>
         /// <param name="yPos"></param>
-        string Set(int xPos, int yPos, string facing);
+        string Set(string placement);
         
         /// <summary>
         /// Move bot forward

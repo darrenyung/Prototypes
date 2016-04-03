@@ -1,13 +1,12 @@
 ﻿using System;
 using ToyRobot.Management.FileManagement;
-using ToyRobot.Main;
 
 namespace ToyRobot.Management.Input
 {
     public class InputHandler : IInputHandler
     {
         private IFileHandler fileHandler;
-        
+
         public InputHandler(IFileHandler fileHandler)
         {
             this.fileHandler = fileHandler;
@@ -36,8 +35,15 @@ namespace ToyRobot.Management.Input
 
         public bool ValidateUserInput(string input)
         {
+            // TODO: need to handle PLACE
+            var commandList = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (commandList.Length == 0)
+                return false;
+
+            var currCommand = commandList[0].ToUpper();
+
             UserInput result;
-            if (!Enum.TryParse(input, out result))
+            if (!Enum.TryParse(currCommand, out result))
                 return false;
 
             CurrUserInput = result;
