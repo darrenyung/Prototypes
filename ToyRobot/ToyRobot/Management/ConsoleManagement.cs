@@ -2,6 +2,7 @@
 using ToyRobot.Management.Input;
 using ToyRobot.Main;
 using System;
+using System.IO;
 
 namespace ToyRobot
 {
@@ -24,12 +25,20 @@ namespace ToyRobot
 
         public void ProcessInput(string[] args)
         {
-            var fileContent = inputHandler.ProcessArgs(args);
-            if (string.IsNullOrEmpty(fileContent))
-                Start();
-            else
+            try
             {
-                Start(fileContent);
+                var fileContent = inputHandler.ProcessArgs(args);
+                if (string.IsNullOrEmpty(fileContent))
+                    Start();
+                else
+                {
+                    Start(fileContent);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Unable to read file. Proceed as brand new.");
+                Start();
             }
         }
 
@@ -49,6 +58,8 @@ namespace ToyRobot
                 UserCommand(command);
                 hasPlacement = true;
             }
+
+            Start();
         }
 
         public void Start()
@@ -57,14 +68,14 @@ namespace ToyRobot
             Console.WriteLine("Available Commands :");
             inputHandler.PrintValidInputs();
             var userInput = string.Empty;
-            userInput = Console.ReadLine().ToUpper();    
-            while(userInput != "QUIT")
+            userInput = Console.ReadLine().ToUpper();
+            while (userInput != "QUIT")
             {
                 try
                 {
                     UserCommand(userInput);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }

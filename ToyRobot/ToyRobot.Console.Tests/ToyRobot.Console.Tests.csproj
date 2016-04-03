@@ -37,6 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -48,9 +52,21 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="ConsoleManagementTests.cs" />
     <Compile Include="InputHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToyRobot.Main\ToyRobot.Main.csproj">
+      <Project>{d895abb6-cbe2-4dc6-a2c6-30994905745c}</Project>
+      <Name>ToyRobot.Main</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToyRobot\ToyRobot.Console.csproj">
+      <Project>{3211f549-531e-4b4c-97b8-7cf7ded4255a}</Project>
+      <Name>ToyRobot.Console</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

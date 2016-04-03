@@ -8,10 +8,5 @@ namespace ToyRobot.Main.Factory
         {
             return new IBot[5,5];
         }
-
-        public static IBot[,] CreateCustomCanvas(int dimensionX, int dimensionY)
-        {
-            return new IBot[dimensionX, dimensionY];
-        }
     }
 }

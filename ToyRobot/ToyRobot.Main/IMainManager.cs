@@ -27,12 +27,6 @@ namespace ToyRobot.Main
         /// Report current position of bot
         /// </summary>
         /// <returns></returns>
-        string Report();
-
-        /// <summary>
-        /// Check if canvas is set
-        /// </summary>
-        /// <returns></returns>
-        bool IsCanvasSet();
+        string Report();        
     }
 }

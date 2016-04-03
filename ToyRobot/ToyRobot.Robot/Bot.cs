@@ -42,14 +42,14 @@ namespace ToyRobot.Robot
         public void Turn(string turnDirection)
         {
             if (string.IsNullOrEmpty(turnDirection))
-                throw new Exception(ReportError());
+                throw new Exception();
 
             if (turnDirection.ToLower().Equals("right"))
                 movementManager.Right();
             else if (turnDirection.ToLower().Equals("left"))
                 movementManager.Left();
             else
-                throw new Exception(ReportError());
+                throw new Exception();
         }
 
         public void Move()

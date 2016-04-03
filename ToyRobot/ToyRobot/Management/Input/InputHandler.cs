@@ -23,14 +23,14 @@ namespace ToyRobot.Management.Input
                 return string.Empty;
             }
 
-            var commandType = args[1];
+            var commandType = args[0];
             if (!commandType.Equals("-f"))
             {
                 PrintHelp();
                 return string.Empty;
             }
 
-            return fileHandler.ReadFile(args[2]);
+            return fileHandler.ReadFile(args[1]);
         }
 
         public bool ValidateUserInput(string input)

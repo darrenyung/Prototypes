@@ -22,7 +22,7 @@ namespace ToyRobot.Main
         {
             try
             {
-                CreateDefaultCanvas();
+                canvas = CanvasFactory.CreateDefaultCanvas();
 
                 var xPos = 0;
                 var yPos = 0;
@@ -55,7 +55,7 @@ namespace ToyRobot.Main
             }
             catch (Exception)
             {
-                return robotManager.ReportError();
+                throw new Exception(robotManager.ReportError());
             }
         }
 
@@ -90,20 +90,6 @@ namespace ToyRobot.Main
                 throw new Exception(robotManager.ReportError());
 
             return robotManager.Report();
-        }
-        
-        #region Canvas
-
-        public bool IsCanvasSet()
-        {
-            return canvas != null;
-        }
-
-        private void CreateDefaultCanvas()
-        {
-            canvas = CanvasFactory.CreateDefaultCanvas();
-        }
-                
-        #endregion
+        }        
     }
 }
